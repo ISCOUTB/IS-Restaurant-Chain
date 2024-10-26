@@ -1,0 +1,8 @@
+__pycache__
+.idea
+env
+.pytest_cache
+.vscode
+package-lock.json
+node_modules
+package.json
