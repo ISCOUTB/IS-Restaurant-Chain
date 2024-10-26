@@ -1,13 +1,11 @@
 from typing import List
 from infrastructure.repositories.user_repository import UserRepository
-from domain.value_objects.email import Email
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 class User(BaseModel):
     username: str
     password: str
-    email: str
-
+    email: EmailStr
 
 class MicroserviceUsuarios:
     def __init__(self, usuarios_repo: UserRepository):
@@ -30,7 +28,7 @@ class MicroserviceUsuarios:
         self.usuarios_repo.eliminar_usuario(email)
 
     def get_user_by_email(self, email: str) -> User:
-        user_data = self.usuarios_repo.get_user_by_email(email)  # Suponiendo que este método existe en tu repositorio
+        user_data = self.usuarios_repo.get_user_by_email(email)
         if user_data is None:
             return None
         return User(**user_data)
