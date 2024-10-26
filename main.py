@@ -16,7 +16,7 @@ app.add_middleware(
 )
 
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 async def read_root(request: Request):
     return {"message": "Hello World"}
 
