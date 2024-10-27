@@ -1,6 +1,7 @@
-import uuid
-from pymongo import UpdateOne
+# infrastructure/repositories/user_repository.py
 import bcrypt
+import uuid
+from pymongo import MongoClient
 
 class UserRepository:
     def __init__(self, db):
@@ -31,27 +32,26 @@ class UserRepository:
         stored_password = user["contraseña"]
         if not bcrypt.checkpw(password.encode('utf-8'), stored_password):
             return None
-        return user
+        return {
+            "user_id": user["user_id"],
+            "username": user["nombre"],
+            "email": user["correo"],
+            "password": user["contraseña"]
+        }
 
-    def update_usuario(self, correo: str, usuario_data: dict) -> None:
-        update_operations = []
-        for key, value in usuario_data.items():
-            update_operations.append(UpdateOne({"correo": correo}, {"$set": {key: value}}))
-        if update_operations:
-            self.collection.bulk_write(update_operations)
+    def update_user(self, email: str, user_data: dict) -> None:
+        self.collection.update_one({"correo": email}, {"$set": user_data})
 
-    def eliminar_usuario(self, correo: str) -> bool:
-        result = self.collection.delete_one({"correo": correo})
-        return result.deleted_count > 0
-
-    def get_usuario_by_nombre(self, nombre: str) -> dict:
-        return self.collection.find_one({"nombre": nombre})
-
-    def clear_db(self):
-        self.collection.delete_many({})
+    def delete_user(self, email: str) -> None:
+        self.collection.delete_one({"correo": email})
 
     def get_user_by_email(self, email: str) -> dict:
         user = self.collection.find_one({"correo": email})
-        if user is None:
-            print("No se encontró ningún usuario con el correo proporcionado.")
-        return user
+        if user:
+            return {
+                "user_id": user["user_id"],
+                "username": user["nombre"],
+                "email": user["correo"],
+                "password": user["contraseña"]
+            }
+        return None
