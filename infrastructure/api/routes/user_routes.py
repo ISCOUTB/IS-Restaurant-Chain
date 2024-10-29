@@ -1,5 +1,5 @@
 # infrastructure/api/routes/user_routes.py
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 from services.user_service import UserService
 from domain.entities.user import User
 from infrastructure.repositories.dbcontroller import DbController
