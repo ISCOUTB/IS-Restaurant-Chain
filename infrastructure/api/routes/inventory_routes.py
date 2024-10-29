@@ -12,7 +12,8 @@ inventory_service = InventoryService(Inventory_use_cases)
 
 @router.post("/add")
 def add_inventory(inventory: Inventory):
-    inventory_service.add_inventory(inventory)
+    if not inventory_service.add_inventory(inventory):
+        return {"message": "El inventario ya existe"}
     return {"message": "Inventario añadido exitosamente"}
 
 @router.get("/get/{product_id}")
