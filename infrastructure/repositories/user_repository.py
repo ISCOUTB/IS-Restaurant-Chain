@@ -1,7 +1,6 @@
 # infrastructure/repositories/user_repository.py
 import bcrypt
 import uuid
-from pymongo import MongoClient
 
 class UserRepository:
     def __init__(self, db):
