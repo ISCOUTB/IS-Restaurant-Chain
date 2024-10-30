@@ -6,7 +6,7 @@ class UserUseCases:
     def __init__(self, user_repo: UserRepository):
         self.user_repo = user_repo
 
-    def register_user(self, user: User) -> bool:
+    def register_user(self, user: User) -> User:
         return self.user_repo.register_user(user.username, user.password, user.email)
 
     def authenticate_user(self, email: str, password: str) -> User:
@@ -15,9 +15,8 @@ class UserUseCases:
             return None
         return User(**user_data)
 
-    def update_user(self, email: str, updated_user: User) -> None:
-        user_data = updated_user.dict()
-        self.user_repo.update_user(email, user_data)
+    def update_user(self, user_id: int, updated_user: User) -> bool:
+        return self.user_repo.update_user(user_id, updated_user)
 
     def delete_user(self, email: str) -> None:
         self.user_repo.delete_user(email)

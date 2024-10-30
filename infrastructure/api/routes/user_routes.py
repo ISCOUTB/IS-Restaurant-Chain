@@ -25,9 +25,9 @@ def login_user(email: str, password: str):
         return {"message": "Credenciales incorrectas"}
     return user
 
-@router.put("/update")
-def update_user(email: str, updated_user: User):
-    user_service.update_user(email, updated_user)
+@router.put("/update/{user_id}")
+def update_user(user_id: int, updated_user: User):
+    user_service.update_user(user_id, updated_user)
     return {"message": "Usuario actualizado exitosamente"}
 
 @router.delete("/delete")

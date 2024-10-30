@@ -12,8 +12,8 @@ class UserService:
     def authenticate_user(self, email: str, password: str) -> User:
         return self.user_use_cases.authenticate_user(email, password)
 
-    def update_user(self, email: str, updated_user: User) -> None:
-        self.user_use_cases.update_user(email, updated_user)
+    def update_user(self, user_id: int, updated_user: User) -> bool:
+        return self.user_use_cases.update_user(user_id, updated_user)
 
     def delete_user(self, email: str) -> None:
         self.user_use_cases.delete_user(email)

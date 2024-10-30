@@ -1,13 +1,13 @@
 # infrastructure/repositories/user_repository.py
 import bcrypt
 import uuid
-
+from domain.entities.user import User
 class UserRepository:
     def __init__(self, db):
         self.collection = db["Usuario"]
 
-    def user_exists(self, username: str, email: str) -> bool:
-        return self.collection.find_one({"$or": [{"nombre": username}, {"correo": email}]}) is not None
+    def user_exists(self, user_id: str) -> bool:
+        return self.collection.find_one({"user_id": user_id}) is not None
 
     def generate_unique_user_id(self) -> str:
         while True:
@@ -16,9 +16,9 @@ class UserRepository:
                 return user_id
 
     def register_user(self, username: str, password: str, email: str) -> bool:
-        if self.user_exists(username, email):
-            return False
         user_id = self.generate_unique_user_id()
+        if self.user_exists(user_id):
+            return False
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
         user_data = {"user_id": user_id, "nombre": username, "contraseña": hashed_password, "correo": email}
         self.collection.insert_one(user_data)
@@ -38,9 +38,10 @@ class UserRepository:
             "password": user["contraseña"]
         }
 
-    def update_user(self, email: str, user_data: dict) -> None:
-        self.collection.update_one({"correo": email}, {"$set": user_data})
-
+    def update_user(self, user_id: int, updated_user: User) -> bool:
+        result = self.collection.update_one({"user_id": user_id}, {"$set": updated_user.dict()})
+        return result.modified_count > 0
+    
     def delete_user(self, email: str) -> None:
         self.collection.delete_one({"correo": email})
 
