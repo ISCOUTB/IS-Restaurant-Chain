@@ -6,7 +6,7 @@ from domain.entities.payment import Pago
 class PaymentRepository:
     def __init__(self, db):
         self.db = db
-        self.collection = self.db["payments"]
+        self.collection = self.db["Pagos"]
 
     def create_payment(self, payment):
         if self.collection.find_one({"_id": ObjectId(payment["_id"])}):
