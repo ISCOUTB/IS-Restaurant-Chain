@@ -1,6 +1,6 @@
 # infrastructure/api/routes/user_routes.py
 from fastapi import APIRouter
-from services.user_service import UserService
+from interfaces.user_service import UserService
 from domain.entities.user import User
 from infrastructure.repositories.dbcontroller import DbController
 from domain.use_cases.user_use_cases import UserUseCases
