@@ -12,5 +12,6 @@ app.include_router(inventory_routes.router, prefix="/inventory", tags=["inventor
 app.include_router(payment_routes.router, prefix="/pagos", tags=["pagos"])
 
 
+
 if __name__ == "__main__":
     uvicorn.run('main:app')
