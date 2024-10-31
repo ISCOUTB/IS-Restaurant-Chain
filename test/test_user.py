@@ -1,6 +1,6 @@
 import pytest
 from domain.entities.user import User
-from services.user_service import UserService
+from interfaces.user_service import UserService
 from pydantic import ValidationError
 
 def test_create_user():

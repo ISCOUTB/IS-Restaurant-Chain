@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from fastapi import HTTPException
-from services.inventory_service import InventoryService
+from interfaces.inventory_service import InventoryService
 from domain.entities.inventory import Inventory
 from infrastructure.repositories.dbcontroller import DbController
 from domain.use_cases.inventory_use_cases import InventoryUseCases
