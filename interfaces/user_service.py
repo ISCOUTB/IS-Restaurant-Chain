@@ -6,13 +6,13 @@ class UserService:
     def __init__(self, user_use_cases: UserUseCases):
         self.user_use_cases = user_use_cases
 
-    def register_user(self, user: User) -> bool:
+    def register_user(self, user: User) -> User:
         return self.user_use_cases.register_user(user)
 
     def authenticate_user(self, email: str, password: str) -> User:
         return self.user_use_cases.authenticate_user(email, password)
 
-    def update_user(self, user_id: int, updated_user: User) -> bool:
+    def update_user(self, user_id: str, updated_user: User) -> bool:
         return self.user_use_cases.update_user(user_id, updated_user)
 
     def delete_user(self, email: str) -> None:
