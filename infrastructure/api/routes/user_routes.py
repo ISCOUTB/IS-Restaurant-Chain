@@ -1,5 +1,5 @@
 # infrastructure/api/routes/user_routes.py
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from interfaces.user_service import UserService
 from domain.entities.user import User
 from infrastructure.repositories.dbcontroller import DbController
@@ -26,8 +26,9 @@ def login_user(email: str, password: str):
     return user
 
 @router.put("/update/{user_id}")
-def update_user(user_id: int, updated_user: User):
-    user_service.update_user(user_id, updated_user)
+def update_user(user_id: str, updated_user: User):
+    if not user_service.update_user(user_id, updated_user):
+        raise HTTPException(status_code=404, detail="Usuario no encontrado")
     return {"message": "Usuario actualizado exitosamente"}
 
 @router.delete("/delete")
