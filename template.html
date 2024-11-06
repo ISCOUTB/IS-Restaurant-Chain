@@ -16,13 +16,20 @@
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '10.00' // Cambia esto por el monto a pagar
+                        value: '100.00' // Cambia esto por el monto a pagar
                     }
                 }]
             });
         },
+        onCancel: function(data) {
+            alert('El pago fue cancelado');
+        },
+        onError: function(err) {
+            alert('Error al procesar el pago: ' + err);
+        },
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
+                console.log('Transacción completada por: ', details.payer.name.given_name);
                 alert('Pago realizado por ' + details.payer.name.given_name);
             });
         }
