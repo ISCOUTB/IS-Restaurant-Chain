@@ -1,5 +1,4 @@
-# domain/use_cases/user_use_cases.py
-from domain.entities.user import User
+from domain.entities.user import User, UpdateUser
 from infrastructure.repositories.user_repository import UserRepository
 
 class UserUseCases:
@@ -7,7 +6,10 @@ class UserUseCases:
         self.user_repo = user_repo
 
     def register_user(self, user: User) -> User:
-        return self.user_repo.register_user(user.user_id,user.username, user.password, user.email)
+        return self.user_repo.register_user(user.user_id,
+                                            user.username, 
+                                            user.password, 
+                                            user.email)
 
     def authenticate_user(self, email: str, password: str) -> User:
         user_data = self.user_repo.authenticate_user(email, password)
@@ -15,7 +17,7 @@ class UserUseCases:
             return None
         return User(**user_data)
 
-    def update_user(self, user_id: str, updated_user: User) -> bool:
+    def update_user(self, user_id: int, updated_user: UpdateUser) -> UpdateUser:
         return self.user_repo.update_user(user_id, updated_user)
 
     def delete_user(self, email: str) -> None:
