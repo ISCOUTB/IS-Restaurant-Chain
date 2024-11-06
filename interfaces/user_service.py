@@ -1,6 +1,6 @@
 # application/services/user_service.py
 from domain.use_cases.user_use_cases import UserUseCases
-from domain.entities.user import User
+from domain.entities.user import User, UpdateUser
 
 class UserService:
     def __init__(self, user_use_cases: UserUseCases):
@@ -12,7 +12,7 @@ class UserService:
     def authenticate_user(self, email: str, password: str) -> User:
         return self.user_use_cases.authenticate_user(email, password)
 
-    def update_user(self, user_id: str, updated_user: User) -> bool:
+    def update_user(self, user_id: int, updated_user: UpdateUser) -> UpdateUser:
         return self.user_use_cases.update_user(user_id, updated_user)
 
     def delete_user(self, email: str) -> None:
@@ -20,3 +20,5 @@ class UserService:
 
     def get_user_by_email(self, email: str) -> User:
         return self.user_use_cases.get_user_by_email(email)
+    
+
