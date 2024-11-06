@@ -2,7 +2,6 @@
 from pymongo import MongoClient
 from infrastructure.repositories.user_repository import UserRepository
 from infrastructure.repositories.inventory_repository import InventoryRepository
-from infrastructure.repositories.payment_repository import PaymentRepository
 
 class DbController:
     def __init__(self):
@@ -10,4 +9,3 @@ class DbController:
         self.db = client["RestaurantChain"]
         self.user_repo = UserRepository(self.db)
         self.inventory_repo = InventoryRepository(self.db)
-        self.payment_repo = PaymentRepository(self.db)
