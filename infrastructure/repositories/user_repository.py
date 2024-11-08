@@ -7,6 +7,8 @@ class UserRepository:
         return self.collection.find_one({"user_id": user_id}) is not None
 
     def register_user(self, user_id: int,  username: str, password: str, email: str) -> User:
+        if self.user_exists(user_id):
+            return False
         user_data = {
             "user_id": user_id, 
             "username": username, 
