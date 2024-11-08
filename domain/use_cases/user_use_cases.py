@@ -6,6 +6,14 @@ class UserUseCases:
         self.user_repo = user_repo
 
     def register_user(self, user: User) -> User:
+        if not user.password:
+            raise ValueError("Password is required")
+        if not user.email:
+            raise ValueError("Email is required")
+        if not user.username:
+            raise ValueError("Username is required")
+        if self.user_repo.user_exists(user.user_id):
+            raise ValueError("User already exists")
         return self.user_repo.register_user(user.user_id,
                                             user.username, 
                                             user.password, 
@@ -17,10 +25,15 @@ class UserUseCases:
             return None
         return User(**user_data)
 
-    def update_user(self, user_id: int, updated_user: UpdateUser) -> UpdateUser:
+    def update_user(self, user_id: str, updated_user: UpdateUser) -> UpdateUser:
+        if not self.user_repo.user_exists(user_id):
+            raise ValueError("User does not exist")
         return self.user_repo.update_user(user_id, updated_user)
 
     def delete_user(self, email: str) -> None:
+        user = self.user_repo.get_user_by_email(email)
+        if user is None:
+            raise ValueError("User not found")
         self.user_repo.delete_user(email)
 
     def get_user_by_email(self, email: str) -> User:
