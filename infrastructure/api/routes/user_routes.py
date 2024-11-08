@@ -1,4 +1,3 @@
-# infrastructure/api/routes/user_routes.py
 from fastapi import APIRouter, HTTPException
 from interfaces.user_service import UserService
 from domain.entities.user import User, UpdateUser
@@ -14,31 +13,44 @@ user_service = UserService(user_use_cases)
 
 @router.post("/register")
 def register_user(user: User):
-    if not user_service.register_user(user):
-        return {"message": "El usuario ya existe"}
+    try:
+        user_service.register_user(user)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     return {"message": "Usuario registrado exitosamente"}
 
 @router.post("/login")
 def login_user(email: str, password: str):
-    user = user_service.authenticate_user(email, password)
-    if user is None:
-        return {"message": "Credenciales incorrectas"}
-    return user
+    try:
+        user = user_service.authenticate_user(email, password)
+        if user is None:
+            raise HTTPException(status_code=401, detail="Invalid credentials")
+        return user
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 @router.put("/update/{user_id}")
-def update_user(user_id: int, updated_user: UpdateUser):
-    if not user_service.update_user(user_id, updated_user):
-        raise HTTPException(status_code=404, detail="Usuario no encontrado")
+def update_user(user_id: str, updated_user: UpdateUser):
+    try:
+        user_service.update_user(user_id, updated_user)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     return {"message": "Usuario actualizado exitosamente"}
 
 @router.delete("/delete")
 def delete_user(email: str):
-    user_service.delete_user(email)
+    try:
+        user_service.delete_user(email)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     return {"message": "Usuario eliminado exitosamente"}
 
 @router.get("/get")
 def get_user_by_email(email: str):
-    user = user_service.get_user_by_email(email)
-    if user is None:
-        return {"message": "Usuario no encontrado"}
-    return user
+    try:
+        user = user_service.get_user_by_email(email)
+        if user is None:
+            raise HTTPException(status_code=404, detail="Usuario no encontrado")
+        return user
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
