@@ -6,6 +6,8 @@ class UserUseCases:
         self.user_repo = user_repo
 
     def register_user(self, user: User) -> User:
+        if not user.user_id:
+            raise ValueError("User ID is required")
         if not user.password:
             raise ValueError("Password is required")
         if not user.email:
