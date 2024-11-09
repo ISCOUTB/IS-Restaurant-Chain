@@ -10,13 +10,15 @@ class InventoryService:
             raise ValueError("Product ID is required")
         if not inventory.name:
             raise ValueError("Name is required")
-        if not inventory.stock:
+        if not inventory.stock or inventory.stock != 0:
             raise ValueError("Stock is required")
-        if not inventory.price:
+        if not inventory.price or inventory.price != 0:
             raise ValueError("Price is required")
         return self.inventory_use_cases.add_inventory(inventory)
 
     def get_inventory(self, product_id: int) -> Inventory:
+        if not product_id:
+            raise ValueError("Product ID is required")
         return self.inventory_use_cases.get_inventory(product_id)
 
     def update_inventory(self, product_id: int, inventoryUpdate: InventoryUpdate) -> InventoryUpdate:
