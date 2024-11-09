@@ -1,4 +1,4 @@
-from domain.entities.inventory import Inventory
+from domain.entities.inventory import Inventory, InventoryUpdate
 
 class InventoryRepository:
     def __init__(self, db):
@@ -10,10 +10,10 @@ class InventoryRepository:
             return Inventory(**inventory_data)
         return None
 
-    def update_inventory(self, product_id: int, inventory: Inventory) -> bool:
+    def update_inventory(self, product_id: int, InventoryUpdate: InventoryUpdate) -> InventoryUpdate:
         result = self.collection.update_one(
             {"product_id": product_id},
-            {"$set": inventory.dict()}
+            {"$set": InventoryUpdate.dict()}
         )
         return result.modified_count > 0
 
