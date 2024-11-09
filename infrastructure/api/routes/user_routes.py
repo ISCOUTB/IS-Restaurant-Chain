@@ -5,8 +5,6 @@ from infrastructure.repositories.dbcontroller import DbController
 from domain.use_cases.user_use_cases import UserUseCases
 
 router = APIRouter()
-
-# Crear instancias necesarias para la inyección de dependencias
 db_controller = DbController()
 user_use_cases = UserUseCases(db_controller.user_repo)
 user_service = UserService(user_use_cases)
