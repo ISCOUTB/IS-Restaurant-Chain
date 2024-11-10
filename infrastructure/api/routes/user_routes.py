@@ -9,6 +9,7 @@ db_controller = DbController()
 user_use_cases = UserUseCases(db_controller.user_repo)
 user_service = UserService(user_use_cases)
 
+
 @router.post("/register")
 def register_user(user: User):
     try:
@@ -16,6 +17,7 @@ def register_user(user: User):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     return {"message": "Usuario registrado exitosamente"}
+
 
 @router.post("/login")
 def login_user(email: str, password: str):
@@ -27,13 +29,15 @@ def login_user(email: str, password: str):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+
 @router.put("/update/{user_id}")
-def update_user(user_id: str, updated_user: UpdateUser):
+def update_user(user_id: float, updated_user: UpdateUser):
     try:
         user_service.update_user(user_id, updated_user)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     return {"message": "Usuario actualizado exitosamente"}
+
 
 @router.delete("/delete")
 def delete_user(email: str):
@@ -42,6 +46,7 @@ def delete_user(email: str):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     return {"message": "Usuario eliminado exitosamente"}
+
 
 @router.get("/get")
 def get_user_by_email(email: str):
