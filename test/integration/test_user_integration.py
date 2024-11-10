@@ -21,7 +21,19 @@ class TestUserIntegration(unittest.TestCase):
         self.assertEqual(result.username, "testing")
         self.assertEqual(result.email, "testing@example.com")
         self.assertEqual(result.password, "password")
-        
+    
+    def test_uptate_user(self):
+        user = User(user_id="666", username="testing2", email="testing2@example.com", password="password")
+        self.user_service.update_user(user.user_id, user)
+    
+    def test_update_user_username_Exist(self):
+        user = User(user_id="666", username="testing2", email="testing3@example.com", password="password")
+        self.user_service.update_user(user.user_id, user)
+    
+    def test_update_user_email_Exist(self):
+        user = User(user_id="666", username="testing3", email="testing2@example.com", password="password")
+        self.user_service.update_user(user.user_id, user)
+
     def test_register_user_with_empty_password(self):
         with self.assertRaises(ValidationError):
             user = User(user_id=1, username="testuser", email="testuser@example.com", password="")

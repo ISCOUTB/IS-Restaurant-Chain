@@ -1,6 +1,7 @@
 from domain.use_cases.inventory_use_cases import InventoryUseCases
 from domain.entities.inventory import Inventory, InventoryUpdate
 
+
 class InventoryService:
     def __init__(self, inventory_use_cases: InventoryUseCases):
         self.inventory_use_cases = inventory_use_cases
@@ -10,9 +11,9 @@ class InventoryService:
             raise ValueError("Product ID is required")
         if not inventory.name:
             raise ValueError("Name is required")
-        if not inventory.stock or inventory.stock != 0:
+        if not inventory.stock:
             raise ValueError("Stock is required")
-        if not inventory.price or inventory.price != 0:
+        if not inventory.price:
             raise ValueError("Price is required")
         return self.inventory_use_cases.add_inventory(inventory)
 
@@ -21,14 +22,14 @@ class InventoryService:
             raise ValueError("Product ID is required")
         return self.inventory_use_cases.get_inventory(product_id)
 
-    def update_inventory(self, product_id: int, inventoryUpdate: InventoryUpdate) -> InventoryUpdate:
-        if not inventoryUpdate.name:
+    def update_inventory(self, product_id: int, inventory_update: InventoryUpdate) -> InventoryUpdate:
+        if not inventory_update.name:
             raise ValueError("Name is required")
-        if not inventoryUpdate.stock:
+        if not inventory_update.stock:
             raise ValueError("Stock is required")
-        if not inventoryUpdate.price:
+        if not inventory_update.price:
             raise ValueError("Price is required")
-        return self.inventory_use_cases.update_inventory(product_id, inventoryUpdate)
+        return self.inventory_use_cases.update_inventory(product_id, inventory_update)
 
     def delete_inventory(self, product_id: int) -> bool:
         if not product_id:

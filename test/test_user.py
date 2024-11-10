@@ -84,7 +84,7 @@ class TestUserService(unittest.TestCase):
             
     def test_create_user_missing_fields(self):
         with self.assertRaises(ValidationError):
-            user = User(user_id=1, username="testuser", email=None, password="securepassword")
+            user = User(user_id=1, username="testuser", email="", password="securepassword")
             self.user_service.register_user(user)
 
 if __name__ == '__main__':
