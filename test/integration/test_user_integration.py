@@ -11,20 +11,35 @@ class TestUserIntegration(unittest.TestCase):
         self.db_controller = DbController()
         self.user_use_cases = UserUseCases(self.db_controller.user_repo)
         self.user_service = UserService(self.user_use_cases)
-
+        
+    def test_register_user(self):
+        user = User(user_id="666", username="testing", email="testing@example.com", password="password")
+        self.user_service.register_user(user)
+        result = self.db_controller.user_repo.user_exists("666")
+        
+        self.assertEqual(result.user_id, "666")
+        self.assertEqual(result.username, "testing")
+        self.assertEqual(result.email, "testing@example.com")
+        self.assertEqual(result.password, "password")
+        
     def test_register_user_with_empty_password(self):
         with self.assertRaises(ValidationError):
-            user = User(user_id="1", username="testuser", email="testuser@example.com", password="")
+            user = User(user_id=1, username="testuser", email="testuser@example.com", password="")
             self.user_service.register_user(user)
+            result = self.db_controller.user_repo.user_exists(1)
+            self.assertEqual(result.user_id, 1)
+            self.assertEqual(result.username, "testuser")
+            self.assertEqual(result.email, "testuser@example.com")
+            self.assertEqual(result.password, "")
 
     def test_register_user_with_empty_email(self):
         with self.assertRaises(ValidationError):
-            user = User(user_id="1", username="testuser", email="", password="securepassword")
+            user = User(user_id=1, username="testuser", email="", password="securepassword")
             self.user_service.register_user(user)
 
     def test_register_user_with_empty_username(self):
         with self.assertRaises(ValidationError):
-            user = User(user_id="1", username="", email="testuser@example.com", password="securepassword")
+            user = User(user_id=1, username="", email="testuser@example.com", password="securepassword")
             self.user_service.register_user(user)
 
     def test_register_user_already_exists(self):
