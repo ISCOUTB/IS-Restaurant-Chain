@@ -6,16 +6,12 @@ class UserUseCases:
         self.user_repo = user_repo
 
     def register_user(self, user: User) -> User:
-        if not user.user_id:
-            raise ValueError("User ID is required")
-        if not user.password:
-            raise ValueError("Password is required")
-        if not user.email:
-            raise ValueError("Email is required")
-        if not user.username:
-            raise ValueError("Username is required")
-        if self.user_repo.user_exists(user.user_id):
-            raise ValueError("User already exists")
+        if not self.user_repo.user_exists(user.user_id):
+            raise ValueError("User ID exists")
+        if not self.user_repo.username_exists(user.username):
+            raise ValueError("Username exists")
+        if not self.user_repo.email_exists(user.email):
+            raise ValueError("Email exists")
         return self.user_repo.register_user(user.user_id,
                                             user.username, 
                                             user.password, 
