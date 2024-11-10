@@ -3,9 +3,12 @@ from pymongo import MongoClient
 from infrastructure.repositories.user_repository import UserRepository
 from infrastructure.repositories.inventory_repository import InventoryRepository
 
+
 class DbController:
     def __init__(self):
-        client = MongoClient("mongodb+srv://Miche17:aumasemo32@cluster0.6ojhz7l.mongodb.net/?tls=true")
+        client = MongoClient(
+            "mongodb+srv://Miche17:aumasemo32@cluster0.6ojhz7l.mongodb.net/?tls=true"
+        )
         self.db = client["RestaurantChain"]
         self.user_repo = UserRepository(self.db)
         self.inventory_repo = InventoryRepository(self.db)
