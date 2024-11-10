@@ -1,8 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
+
 class Inventory(BaseModel):
     product_id: int
-    name:str
+    name: str
     stock: int
     price: float
     description: Optional[str] = None
