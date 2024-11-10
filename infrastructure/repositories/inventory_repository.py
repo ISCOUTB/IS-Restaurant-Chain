@@ -10,22 +10,21 @@ class InventoryRepository:
             return Inventory(**inventory_data)
         return None
 
-    def update_inventory(self, product_id: int, InventoryUpdate: InventoryUpdate) -> InventoryUpdate:
+    def update_inventory(self, product_id: int, inventory_update: InventoryUpdate) -> bool:
         result = self.collection.update_one(
             {"product_id": product_id},
-            {"$set": InventoryUpdate.dict()}
+            {"$set": inventory_update.dict()}
         )
         return result.modified_count > 0
 
-    def create_inventory(self, product_id:int, name:str, 
-                                                    stock:int, price:float, 
-                                                    description ) -> Inventory:
+    def create_inventory(self, product_id: int, name: str, stock: int, price: float, description: str) -> bool:
         inventory_data = {
             "product_id": product_id,
             "name": name,
             "stock": stock,
             "price": price,
-            "description": description}
+            "description": description
+        }
         self.collection.insert_one(inventory_data)
         return True
 
