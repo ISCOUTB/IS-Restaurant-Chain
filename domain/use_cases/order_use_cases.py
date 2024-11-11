@@ -19,3 +19,15 @@ class OrderUseCases:
 
     def delete_order(self, order_id: ObjectId) -> bool:
         return self.order_repo.delete_order(order_id)
+
+    def add_product_to_order(self, order_id: ObjectId, product) -> bool:
+        return self.order_repo.add_product_to_order(order_id, product)
+
+    def remove_product_from_order(self, order_id: ObjectId, product_id: ObjectId) -> bool:
+        return self.order_repo.remove_product_from_order(order_id, product_id)
+
+    def cancel_order(self, order_id: ObjectId) -> bool:
+        return self.order_repo.cancel_order(order_id)
+
+    def pay_order(self, order_id: ObjectId) -> bool:
+        return self.order_repo.pay_order(order_id)
