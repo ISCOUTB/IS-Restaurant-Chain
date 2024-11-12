@@ -6,7 +6,7 @@ from domain.entities.inventory import Inventory
 from domain.entities.user import User
 
 class Order(BaseModel):
-    _id: ObjectId = Field(default_factory=ObjectId, alias="_id")
+    id: ObjectId = Field(default_factory=ObjectId, alias="_id")
     products: List[Inventory]
     client: User
     payment: str
@@ -22,3 +22,4 @@ class Order(BaseModel):
 
     class Config:
         arbitrary_types_allowed = True
+        populate_by_name = True

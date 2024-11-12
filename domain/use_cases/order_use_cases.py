@@ -7,7 +7,7 @@ class OrderUseCases:
         self.order_repo = order_repo
 
     def add_order(self, order: Order) -> Order:
-        return self.order_repo.create_order(order._id, order.products, order.client, 
+        return self.order_repo.create_order(order.id, order.products, order.client, 
                                             order.payment, order.order_status, 
                                             order.order_date, order.total_price)
 
