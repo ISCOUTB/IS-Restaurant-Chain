@@ -1,0 +1,94 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.body {
+  background: linear-gradient(135deg, #1c1c1c, #2d2d2d, #3d1a1a, #ffd54f); 
+  background-size: 400% 400%;
+  animation: GradientBackground 15s ease infinite;
+  color: #ffffff;
+}
+
+@keyframes GradientBackground {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #1c1c1c; /* Oscuro para destacar el contenido */
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.6), 0 5px 5px 0 rgba(0, 0, 0, 0.4);
+  border: 2px solid #d32f2f; /* Bordes rojos */
+}
+
+.form input {
+  font-family: FontAwesome, "Roboto", sans-serif;
+  outline: 0;
+  background: #3c3c3c;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 10px;
+  color: #fdd835; /* Amarillo */
+}
+
+.form input::placeholder {
+  color: #b0b0b0;
+}
+
+.form button {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: .1em;
+  outline: 0;
+  background: #d32f2f; /* Rojo brillante */
+  width: 100%;
+  border: 0;
+  border-radius: 30px;
+  margin: 0px 0px 8px;
+  padding: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form button:hover,
+.form button:focus {
+  background: #b71c1c;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+.form .message {
+  margin: 6px 6px;
+  color: #fdd835;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.form .message a {
+  color: #fdd835;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ 
