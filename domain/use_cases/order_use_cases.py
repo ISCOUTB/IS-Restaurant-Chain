@@ -7,7 +7,7 @@ class OrderUseCases:
         self.order_repo = order_repo
 
     def add_order(self, order: Order) -> Order:
-        return self.order_repo.create_order(order.id, order.products, order.client, 
+        return self.order_repo.create_order(order.id, order.products, order.client.username, 
                                             order.payment, order.order_status, 
                                             order.order_date, order.total_price)
 
@@ -20,10 +20,10 @@ class OrderUseCases:
     def delete_order(self, order_id: ObjectId) -> bool:
         return self.order_repo.delete_order(order_id)
 
-    def add_product_to_order(self, order_id: ObjectId, product) -> bool:
-        return self.order_repo.add_product_to_order(order_id, product)
+    def add_product_to_order(self, order_id: ObjectId, product_id: int) -> bool:
+        return self.order_repo.add_product_to_order(order_id, product_id)
 
-    def remove_product_from_order(self, order_id: ObjectId, product_id: ObjectId) -> bool:
+    def remove_product_from_order(self, order_id: ObjectId, product_id: int) -> bool:
         return self.order_repo.remove_product_from_order(order_id, product_id)
 
     def cancel_order(self, order_id: ObjectId) -> bool:

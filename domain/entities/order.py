@@ -1,9 +1,20 @@
-from pydantic import BaseModel, Field
-from typing import List
+from pydantic import BaseModel, Field, EmailStr
+from typing import List, Optional
 from datetime import datetime
 from bson import ObjectId
-from domain.entities.inventory import Inventory
-from domain.entities.user import User
+
+class Inventory(BaseModel):
+    product_id: int
+    name: str
+    stock: int
+    price: float
+    description: Optional[str] = None
+
+class User(BaseModel):
+    user_id: float
+    username: str
+    email: EmailStr
+    password: str
 
 class Order(BaseModel):
     id: ObjectId = Field(default_factory=ObjectId, alias="_id")
