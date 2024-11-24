@@ -1,0 +1,157 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Red Rose", cursive;
+}
+
+/* Contenedor principal */
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("/styles/assets/background-restaurant.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+/* Navbar */
+nav {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.list {
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    font-weight: bold;
+    list-style: none;
+}
+
+.list-item {
+    margin: 0 15px;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.list-item:hover {
+    color: #e74c21;
+}
+
+.div-nav {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #e74c21;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 0 10px;
+}
+
+button:hover {
+    background-color: #d13d1c;
+    transform: scale(1.05);
+}
+
+/* Hero Section */
+.hero {
+    margin: 100px auto;
+    text-align: center;
+    padding: 60px 0;
+    max-width: 800px;
+}
+
+.hero-heading {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #d7c508;
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.button-large {
+    padding: 15px 30px;
+    background-color: #e74c21;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button-large:hover {
+    background-color: #d13d1c;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .list {
+        flex-direction: column;
+    }
+
+    .list-item {
+        margin: 10px 0;
+    }
+
+    .hero-heading {
+        font-size: 2.5rem;
+    }
+
+    .button-large {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-heading {
+        font-size: 2rem;
+    }
+
+    .button-large {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+}
