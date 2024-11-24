@@ -1,48 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Restaurant Chain</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/styles/Home_styles.css" />
+    <!-- Red Rose Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Dela Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet" />
+    <title>Restaurant - Inicio</title>
 </head>
+
 <body>
-    <header>
-        <h1>Welcome to Our Restaurant Chain</h1>
-        <nav>
-            <ul>
-                <li><a href="/menu">Menu</a></li>
-                <li><a href="/locations">Locations</a></li>
-                <li><a href="/contact">Contact Us</a></li>
-                <li><a href="/about">About Us</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <h2>Our Specialties</h2>
-            <p>Discover our delicious menu items and specialties.</p>
-            <a href="/menu" class="button">View Menu</a>
-            <a href="/users/register/" class="button">Register</a>
-            <a href="/users/login/" class="button">Login</a>
-
-
-
-            
+    <div class="container">
+        <!-- Navbar -->
+        <section aria-label="navbar">
+            <nav class="navbar">
+                <div class="div-nav">
+                    <a href="/">
+                        <img src="/styles/assets/logo.png" alt="logo" class="logo" />
+                    </a>
+                </div>
+                <div class="div-nav">
+                    <ul class="list">
+                        <li class="list-item">
+                            <a href="#menu">Nuestro menú</a>
+                        </li>
+                        <li class="list-item">
+                            <a href="#mapa">Mapa</a>
+                        </li>
+                        <li class="list-item">
+                            <a href="#about">Sobre nosotros</a>
+                        </li>
+                        <li class="list-item">
+                            <a href="#contact">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="div-nav">
+                    <div>
+                        <a href="/users/login/">
+                            <button class="button-large">Iniciar sesión</button>
+                        </a>
+                        <a href="/users/register/">
+                            <button class="button-large">Registrarse</button>
+                        </a>
+                    </div>
+                </div>
+            </nav>
         </section>
-        <section>
-            <h2>Find a Location</h2>
-            <p>We have multiple locations to serve you better.</p>
-            <a href="/locations" class="button">Find Locations</a>
+        <!-- Hero Section -->
+        <section aria-label="hero">
+            <div class="hero">
+                <h1 class="hero-heading">
+                    Un restaurante que sólo sirve comida deliciosa
+                </h1>
+                <a href="#menu">
+                    <button class="button-large">Mira nuestro menú</button>
+                </a>
+            </div>
         </section>
-        <section>
-            <h2>Contact Us</h2>
-            <p>Have any questions? Get in touch with us.</p>
-            <a href="/contact" class="button">Contact Us</a>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Restaurant Chain. All rights reserved.</p>
-    </footer>
+    </div>
 </body>
+
 </html>
+
