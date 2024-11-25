@@ -14,7 +14,7 @@
 <body class="body">
     <div class="login-page">
         <div class="form">
-            <form id="loginform" onsubmit="loginUser(event)">
+            <form id="loginadminform" onsubmit="loginAdmin(event)">
                 <lottie-player
                     src="https://assets4.lottiefiles.com/datafiles/XRVoUu3IX4sGWtiC3MPpFnJvZNq7lVWDCa8LSqgS/profile.json"
                     background="transparent"
@@ -23,7 +23,7 @@
                     loop
                     autoplay
                 ></lottie-player>
-                <input type="email" id="email" name="email" placeholder="Correo electronico" />
+                <input type="id" id="admin_id" name="admin_id" placeholder="Identificacion" />
                 <input type="password" id="password" name="password" placeholder="Contraseña" />
                 <button type="submit">Iniciar sesión</button>
             </form>
@@ -31,14 +31,14 @@
         </div>
     </div>
     <script>
-      async function loginUser(event) {
+      async function loginAdmin(event) {
           event.preventDefault();
-          const form = document.getElementById('loginform');
+          const form = document.getElementById('loginadminform');
           const formData = new FormData(form);
           const data = Object.fromEntries(formData.entries());
 
           try {
-              const response = await fetch('/users/login', {
+              const response = await fetch('/admin/login', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json'
@@ -53,7 +53,7 @@
                   messageDiv.innerHTML = `<p style="color: green;">${result.message}</p>`;
                   // Redirigir a la página de login después de 2 segundos
                   setTimeout(() => {
-                      window.location.href = '/users/Home/';
+                      window.location.href = '/admin/inventory/';
                   }, 2000);
               } else {
                   // Manejar errores de validación
