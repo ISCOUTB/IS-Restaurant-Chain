@@ -18,7 +18,9 @@ class InventoryUseCases:
             inventory.stock, inventory.price, 
             inventory.description
         )
-
+    def get_all_inventory(self) -> list[Inventory]:
+        return self.inventory_repo.get_all_inventory()
+    
     def get_inventory(self, product_id: int) -> Inventory:
         if not self.inventory_repo.get_inventory(product_id):
             raise ValueError("Inventory does not exist")
