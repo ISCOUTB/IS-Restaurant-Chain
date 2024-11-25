@@ -20,7 +20,7 @@ class UserUseCases:
             user.email,
             user.password
         )
-
+    
     def authenticate_user(self, email: str, password: str) -> User:
         user_data = self.user_repo.authenticate_user(email, password)
         if user_data is None:
