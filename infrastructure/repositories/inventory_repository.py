@@ -4,6 +4,10 @@ class InventoryRepository:
     def __init__(self, db):
         self.collection = db["Inventario"]
 
+    def get_all_inventory(self) -> list[Inventory]:
+        inventory_data = self.collection.find()
+        return [Inventory(**inventory) for inventory in inventory_data]
+    
     def get_inventory(self, product_id: int) -> Inventory:
         inventory_data = self.collection.find_one({"product_id": product_id})
         if inventory_data:
