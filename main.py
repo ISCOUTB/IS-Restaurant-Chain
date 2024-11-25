@@ -14,7 +14,7 @@ user = Jinja2Templates(directory="templates")
 
 
 @app.get("/", response_class=HTMLResponse)
-def template_register(request: Request):
+def home(request: Request):
     return user.TemplateResponse("Home.html", {"request": request})
 
 app.include_router(user_routes.router, prefix="/users", tags=["users"])
