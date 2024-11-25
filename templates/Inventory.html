@@ -139,7 +139,7 @@
         }
 
         async function editProduct(id) {
-            const response = await fetch(`/inventory/update/${product_id}`);
+            const response = await fetch(`/inventory/update/${id}`);
             const product = await response.json();
             document.getElementById('product_id').value = product.product_id;
             document.getElementById('name').value = product.name;
@@ -150,15 +150,18 @@
         }
 
         async function deleteProduct(id) {
-            const response = await fetch(`/inventory/delete/${product_id}`, {
-                method: 'DELETE'
-            });
-
-            if (response.ok) {
-                alert('Producto eliminado exitosamente');
-                loadInventory();
-            } else {
-                alert('Error al eliminar el producto');
+            // Confirmar la acción de eliminación
+            if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+                const response = await fetch(`/inventory/delete/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    alert('Producto eliminado exitosamente');
+                    loadInventory();
+                } else {
+                    alert('Error al eliminar el producto');
+                }
             }
         }
 
